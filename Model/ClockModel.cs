@@ -6,29 +6,29 @@ using System.Threading.Tasks;
 
 namespace AnalogClock.Model
 {
-    public class ClockModel
+    public class ClockModel //Модель часов. Является источником информации
     {
-        public int year;
+        public int year; //Год
 
-        public int month;
+        public int month; //Месяц
 
-        public int day;
+        public int day; //День
 
-        public int hour;
-        public float hourAngle;
+        public int hour; //Час
+        public float hourAngle;//Угол часовой стрелки часов
 
-        public int minute;
-        public float minuteAngle;
+        public int minute;//минута
+        public float minuteAngle;//Угол минутной стрелки часов
 
-        public int second;
-        public float secondAngle;
+        public int second;//секунда
+        public float secondAngle;//угол секундной стрелки часов
 
-        public ClockModel()
+        public ClockModel()//конструктор модели
         {
             Update();
         }
 
-        public void Update()
+        public void Update()//Метод, обновляющий все поля
         {
             year = DateTime.Now.Year;
             month = DateTime.Now.Month;

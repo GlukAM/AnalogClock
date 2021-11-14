@@ -34,10 +34,10 @@ namespace AnalogClock.ViewModel
         }
 
     }
-    class ClockVM : ViewModel
+    class ClockVM : ViewModel // Модель представления часов
     {
-        public string time;
-        public string Time
+        private string time; // Поле для отображения времени цифрами
+        public string Time // Конструкция для связи через Binding
         {
             get { return time; }
             set
@@ -47,8 +47,8 @@ namespace AnalogClock.ViewModel
             }
         }
 
-        public string date;
-        public string Date
+        private string date; // Поле для отображения даты
+        public string Date // Конструкция для связи через Binding
         {
             get { return date; }
             set
@@ -58,8 +58,8 @@ namespace AnalogClock.ViewModel
             }
         }
 
-        public float hourAngle;
-        public float HourAngle
+        private float hourAngle; // Угол часовой стрелки
+        public float HourAngle // Конструкция для связи через Binding
         {
             get { return hourAngle; }
             set
@@ -69,8 +69,8 @@ namespace AnalogClock.ViewModel
             }
         }
 
-        public float minuteAngle;
-        public float MinuteAngle
+        private float minuteAngle; //Угол минутной стрелки
+        public float MinuteAngle // Конструкция для связи через Binding
         {
             get { return minuteAngle; }
             set
@@ -80,8 +80,8 @@ namespace AnalogClock.ViewModel
             }
         }
 
-        public float secondAngle;
-        public float SecondAngle
+        private float secondAngle; //Угол секундной стрелки
+        public float SecondAngle // Конструкция для связи через Binding
         {
             get { return secondAngle; }
             set
@@ -92,38 +92,38 @@ namespace AnalogClock.ViewModel
         }
 
 
-        private static Timer aTimer;
+        private static Timer aTimer; //Объявление таймера
 
-        ClockModel clockmodel;
+        ClockModel clockmodel; //Объявление объекта модели часов
 
-        public ClockVM()
+        public ClockVM() // Конструктор модели представления
         {
-            clockmodel = new ClockModel();
+            clockmodel = new ClockModel(); // Создание объекта содели часов
 
-            Time = $"{clockmodel.hour} : {clockmodel.minute} : {clockmodel.second}";
+            Time = $"{clockmodel.hour} : {clockmodel.minute} : {clockmodel.second}"; //Запись времени в цифрах
 
-            TimerInit();
+            TimerInit(); //Настройка таймера
 
         }
 
-        public void Update()
+        public void Update() //Метод обновления информации. Обновляет значения в модели и записывает в объекты, связанные с представлением
         {
            
-            clockmodel.Update();
+            clockmodel.Update(); //Обновляем модель
 
-            HourAngle = clockmodel.hourAngle;
+            HourAngle = clockmodel.hourAngle; //Меняем угол часовой
 
-            MinuteAngle = clockmodel.minuteAngle;
+            MinuteAngle = clockmodel.minuteAngle;//меняем угол минутной
 
-            SecondAngle = clockmodel.secondAngle;
+            SecondAngle = clockmodel.secondAngle; //меняем угол секундной
 
-            Date = $"{clockmodel.day} . {clockmodel.month} . {clockmodel.year}";
+            Date = $"{clockmodel.day} . {clockmodel.month} . {clockmodel.year}"; //меняем дату
 
-            Time = $"{clockmodel.hour} : {clockmodel.minute} : {clockmodel.second}";
+            Time = $"{clockmodel.hour} : {clockmodel.minute} : {clockmodel.second}"; // меняем время
 
         }
 
-        private void OnTimedEvent(object source, ElapsedEventArgs e)
+        private void OnTimedEvent(object source, ElapsedEventArgs e) //Вызывается при переполнении таймера
         {
             Update();
         }

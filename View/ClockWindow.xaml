@@ -11,23 +11,27 @@
         Background="WhiteSmoke">
 
     <Window.Resources>
-        <vm:ClockVM x:Key="ClockVM"/>
+        <vm:ClockVM x:Key="ClockVM"/> <!--Ссылка на объект модели представления-->
     </Window.Resources>
 
     <Grid DataContext="{StaticResource ClockVM}">
-
-        <TextBlock Margin="444,29,-354,655" 
+        <!--Блок отображения времени цифрами-->
+        <!--Привязан к полю Time-->
+        <TextBlock Margin="444,29,-354,655"   
                    Text="{Binding Path=Time}"
                    FontSize="40"
                    />
-
-        <TextBlock Margin="50,29,40,655" 
+        <!--Блок отображения даты-->
+        <!--Привязан к полю Date-->
+        <TextBlock Margin="50,29,40,655"  
                    Text="{Binding Path=Date}"
                    FontSize="40"
                    />
 
-
+        <!--Блок отображения стрелок-->
+        <!--Стрелки привязаны к углам, углы считаются в модели-->
         <Grid Name="Arrows" Width="600" Height="600" Margin="0,84,0,0" >
+            <!--Секундная стрелка-->
             <Line Stroke="SlateGray" 
               X1="50" 
               Y1="100" 
@@ -45,6 +49,7 @@
                 </Line.RenderTransform>
             </Line>
 
+            <!--Минутная стрелка-->
             <Line Stroke="SlateGray" 
               X1="50" 
               Y1="100" 
@@ -62,6 +67,7 @@
                 </Line.RenderTransform>
             </Line>
 
+            <!--Часовая стрелка-->
             <Line Stroke="SlateGray" 
               X1="50" 
               Y1="150" 
@@ -80,7 +86,9 @@
             </Line>
 
         </Grid>
-
+        
+        <!--Блок отображения циферблата-->
+        <!--Содержит 12 линий под разными углами-->
         <Canvas Name="ClockFront" Height="600" Width="600" Margin="0,84,0,0">
             <Line X1="0" Y1="50" X2="0" Y2="0" Stroke ="Gray" RenderTransformOrigin="0,6" Canvas.Left="299" Width="1">
                 <Line.RenderTransform >
